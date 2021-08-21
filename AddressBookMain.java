@@ -1,5 +1,5 @@
 package address;
-
+import java.util.*;
 public class AddressBookMain {
 
 	//class members
@@ -36,11 +36,49 @@ public class AddressBookMain {
 		System.out.println("phone number"+phone_number);
 		System.out.println("E-mail:"+email);
 	}
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to adress book program"); //welcome message
-		AddressBookMain a1=new AddressBookMain("shravya","p","gummattegadade house","Bettampady","karnataka","xyz","7338221810","@gmail.com");	//object creation
-		a1.display(); //display the address book
+		
+		Scanner sc=new Scanner(System.in);
+		
+		AddressBookMain[] contact=new AddressBookMain[10];  //array to store different contacts in address book
+		System.out.println("How many contacts do you wanna add!!!");
+		int n=sc.nextInt();
+		System.out.println("Enter the details of person!!");
+		String fname,lname,address,city,state,zip,pno,email;
+		
+		for(int i=0;i<n;i++) //for loop to add n people
+		{
+			System.out.println("first Name:");
+			fname=sc.next();
+			System.out.println("last name:");
+			lname=sc.next();
+			System.out.println("address:");
+			address=sc.next();
+			System.out.println("city:");
+			city=sc.next();
+			System.out.println("state:");
+			state=sc.next();
+			System.out.println("zip:");
+			zip=sc.next();
+			System.out.println("phone number");
+			pno=sc.next();
+			System.out.println("E-mail:");
+			email=sc.next();
+			contact[i]=new AddressBookMain(fname,lname,address,city,state,zip,pno,email);	//object creation
+			
+		}
+		System.out.println("Details of the addressbook!!!1");
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Details of "+i+" person!!!");
+			contact[i].display(); //display the address book
+			
+		}
+		
 	}
 
 }
