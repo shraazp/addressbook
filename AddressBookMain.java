@@ -2,15 +2,16 @@ package address;
 import java.util.*;
 public class AddressBookMain {
 
+	
 	//class members
-	private String first_name;
-	private String last_name;
-	private String address;
-	private String city;
-	private String state;
-	private String zip;
-	private String phone_number;
-	private String email;
+	public String first_name;
+	public String last_name;
+	public String address;
+	public String city;
+	public String state;
+	public String zip;
+	public String phone_number;
+	public String email;
 	
 	//parameterized constructors for initializing class members
 	public AddressBookMain(String first_name,String last_name,String address,String city,String state,String zip,String phone_number,String email)
@@ -37,6 +38,17 @@ public class AddressBookMain {
 		System.out.println("E-mail:"+email);
 	}
 	
+	public void edit(String first_name,String last_name,String address,String city,String state,String zip,String phone_number,String email)
+	{
+		this.first_name=first_name;
+		this.last_name=last_name;
+		this.address=address;
+		this.city=city;
+		this.state=state;
+		this.zip=zip;
+		this.phone_number=phone_number;
+		this.email=email;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,37 +57,68 @@ public class AddressBookMain {
 		Scanner sc=new Scanner(System.in);
 		
 		AddressBookMain[] contact=new AddressBookMain[10];  //array to store different contacts in address book
-		System.out.println("How many contacts do you wanna add!!!");
-		int n=sc.nextInt();
+		
+		int n=0,counter=0;
+		
 		System.out.println("Enter the details of person!!");
+		
 		String fname,lname,address,city,state,zip,pno,email;
 		
-		for(int i=0;i<n;i++) //for loop to add n people
+		while(counter!=1)
 		{
-			System.out.println("first Name:");
-			fname=sc.next();
-			System.out.println("last name:");
-			lname=sc.next();
-			System.out.println("address:");
-			address=sc.next();
-			System.out.println("city:");
-			city=sc.next();
-			System.out.println("state:");
-			state=sc.next();
-			System.out.println("zip:");
-			zip=sc.next();
-			System.out.println("phone number");
-			pno=sc.next();
-			System.out.println("E-mail:");
-			email=sc.next();
-			contact[i]=new AddressBookMain(fname,lname,address,city,state,zip,pno,email);	//object creation
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Display contact\n4.exit");
+			int choice=sc.nextInt();
+			switch(choice)
+			{
+			case 1:
 			
-		}
-		System.out.println("Details of the addressbook!!!1");
-		for(int i=0;i<n;i++)
-		{
-			System.out.println("Details of "+i+" person!!!");
-			contact[i].display(); //display the address book
+				System.out.println("first Name:");
+				fname=sc.next();
+				System.out.println("last name:");
+				lname=sc.next();
+				System.out.println("address:");
+				address=sc.next();
+				System.out.println("city:");
+				city=sc.next();
+				System.out.println("state:");
+				state=sc.next();
+				System.out.println("zip:");
+				zip=sc.next();
+				System.out.println("phone number");
+				pno=sc.next();
+				System.out.println("E-mail:");
+				email=sc.next();
+				contact[n]=new AddressBookMain(fname,lname,address,city,state,zip,pno,email);	//object creation
+				n++;
+				break;
+			
+			case 2:System.out.println("Enter the person whose name to be edited");
+				int c=sc.nextInt();
+				System.out.println("first Name:");
+				fname=sc.next();
+				System.out.println("last name:");
+				lname=sc.next();
+				System.out.println("address:");
+				address=sc.next();
+				System.out.println("city:");
+				city=sc.next();
+				System.out.println("state:");
+				state=sc.next();
+				System.out.println("zip:");
+				zip=sc.next();
+				System.out.println("phone number");
+				pno=sc.next();
+				System.out.println("E-mail:");
+				email=sc.next();
+				contact[c].edit(fname,lname,address,city,state,zip,pno,email);
+				break;
+			case 3:System.out.println("Enter the person whose name to be edited");
+				int c1=sc.nextInt();
+				contact[c1].display();
+				break;
+			case 4:counter=1;
+			break;
+			}
 			
 		}
 		
