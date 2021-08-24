@@ -140,7 +140,7 @@ public class AddressBookMain {
 			}
 		
 	}
-	//method to delete a contact in addressbook
+	//method to delete a contact in address book
 	public  void delete()
 	{
 		System.out.println("Enter the person whose contact to be deleted"); //to delete the contact of desired person
