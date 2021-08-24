@@ -2,8 +2,12 @@ package address;
 import java.util.*;		//scanner class
 public class AddressBookMain {
 
-	public static  int n=0,counter=0;
-	//class members
+	public static ArrayList<AddressBookMain> contact=new ArrayList<>();  //collection class array list is used to store different contacts in address book
+	
+	public static  int counter=0;										//counter variable to repeat while loop to add more contacts
+	/*class members
+	 * all the details of contacts
+	 */
 	public String first_name;
 	public String last_name;
 	public String address;
@@ -37,7 +41,7 @@ public class AddressBookMain {
 		System.out.println("phone number:"+phone_number);
 		System.out.println("E-mail:"+email);
 	}
-	//method to edit the addressbook
+	//method to edit the address book object itself modified
 	public void edit(String first_name,String last_name,String address,String city,String state,String zip,String phone_number,String email)
 	{
 		this.first_name=first_name;
@@ -50,22 +54,9 @@ public class AddressBookMain {
 		this.email=email;
 	}
 	//method to delete a contact in addressbook
-	public static void delete(int c,AddressBookMain[] contact)
+	public static void delete(AddressBookMain object)
 	{
-		int i;
-		if(c==n-1)
-		{
-			contact[c]=null;
-		}
-		else
-		{
-			for(i=c;i<n-1;i++)
-			{
-				contact[i]=contact[i+1];
-			}
-			contact[i]=null;   //to delete the object
-			 System.gc();
-		}
+		contact.remove(object);						//arraylist has built in method to remove objects
 		
 	}
 	
@@ -73,23 +64,19 @@ public class AddressBookMain {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to adress book program"); //welcome message
 		
-		Scanner sc=new Scanner(System.in);
-		
-		AddressBookMain[] contact=new AddressBookMain[10];  //array to store different contacts in address book
-		
-		
+		Scanner sc=new Scanner(System.in);						//scanner class to get input
 		
 		System.out.println("Enter the details of person!!");
 		
-		String fname,lname,address,city,state,zip,pno,email;
+		String fname,lname,address,city,state,zip,pno,email;    //local variables
 		
-		while(counter!=1) //it repeats till the user wants
+		while(counter!=1) //it repeats till the user wants to end
 		{
 			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.exit"); //options for different actions
-			int choice=sc.nextInt();
+			int choice=sc.nextInt();											//users choice is taken as input
 			switch(choice)
 			{
-			case 1:														//add a new address
+			case 1:														//add a new contact into addressbook
 			
 				System.out.println("first Name:");
 				fname=sc.next();
@@ -107,15 +94,16 @@ public class AddressBookMain {
 				pno=sc.next();
 				System.out.println("E-mail:");
 				email=sc.next();
-				contact[n]=new AddressBookMain(fname,lname,address,city,state,zip,pno,email);	//object creation
-				n++;
+				contact.add(new AddressBookMain(fname,lname,address,city,state,zip,pno,email));	//object creation
+				
 				break;
 			
 			case 2:System.out.println("Enter the person whose contact to be edited");	//to edit existing address
 				String name=sc.next();
-					for (int j=0;j<n;j++)
+					for (int j=0;j<contact.size();j++)
 					{
-						if(contact[j].first_name.equals(name))
+						AddressBookMain object=contact.get(j);
+						if(object.first_name.equals(name))
 						{
 							int c1=j;
 							System.out.println("first Name:");
@@ -134,32 +122,35 @@ public class AddressBookMain {
 							pno=sc.next();
 							System.out.println("E-mail:");
 							email=sc.next();
-							contact[c1].edit(fname,lname,address,city,state,zip,pno,email);  //call the edit method
+							object.edit(fname,lname,address,city,state,zip,pno,email);  //call the edit method
 						}
 					}
 					break;
 				   
 			case 3: System.out.println("Enter the person whose contact to be deleted"); //to delete the contact of desired person
 					String name11=sc.next();//input is taken from console
-					for (int j=0;j<n;j++)
+					
+					for (int j=0;j<contact.size();j++)
 					{	
-						if(contact[j].first_name.equals(name11))
+						AddressBookMain object=contact.get(j);
+						if(object.first_name.equals(name11))
 						{
-							int c1=j;
-							delete(c1,contact);
-							n=n-1;
+							
+							delete(object);
+						
 						}
 					}
 					break;
 						
 			case 4: System.out.println("Enter the person whose contact to be displayed"); //to display desired contact
 					String name1=sc.next();	//input is taken from console
-					for (int j=0;j<n;j++)
+					for (int j=0;j<contact.size();j++)
 					{
-						if(contact[j].first_name.equals(name1))
+						AddressBookMain object=contact.get(j);
+						if(object.first_name.equals(name1))
 						{
 							int c1=j;
-							contact[c1].display();	//call display function
+							object.display();	//call display function
 						}
 					  
 					  
@@ -167,15 +158,16 @@ public class AddressBookMain {
 				
 					break;
 					
-			case 5:if(n==0)	//to display all the contacts of the address book
+			case 5:if(contact.size()==0)	//to display all the contacts of the address book
 					{
 						System.out.println("No Contacts in the address book!!!");
 					}
 					System.out.println("Address book contains following contacts!!!");
-					for(int j=0;j<n;j++)
+					for(int j=0;j<contact.size();j++)
 					{
+						AddressBookMain object=contact.get(j);
 						System.out.println("Contact details of person"+j);
-						contact[j].display();
+						object.display();
 					}
 					break;
 			case 6: counter=1;			//to exit from the while loop
