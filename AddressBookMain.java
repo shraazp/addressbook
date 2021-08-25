@@ -68,14 +68,14 @@ public class AddressBookMain {
 			if(object.first_name.equals(name1))
 			{
 				
-				System.out.println("first Name:"+first_name);
-				System.out.println("last name:"+last_name);
-				System.out.println("address:"+address);
-				System.out.println("city:"+city);
-				System.out.println("state:"+state);
-				System.out.println("zip:"+zip);
-				System.out.println("phone number:"+phone_number);
-				System.out.println("E-mail:"+email);	//call display function
+				System.out.println("first Name:"+object.first_name);
+				System.out.println("last name:"+object.last_name);
+				System.out.println("address:"+object.address);
+				System.out.println("city:"+object.city);
+				System.out.println("state:"+object.state);
+				System.out.println("zip:"+object.zip);
+				System.out.println("phone number:"+object.phone_number);
+				System.out.println("E-mail:"+object.email);	//call display function
 			}
 		  
 		  
@@ -120,21 +120,21 @@ public class AddressBookMain {
 				{
 					
 					System.out.println("first Name:");
-					this.first_name=sc.next();
+					object.first_name=sc.next();
 					System.out.println("last name:");
-					this.last_name=sc.next();
+					object.last_name=sc.next();
 					System.out.println("address:");
-					this.address=sc.next();
+					object.address=sc.next();
 					System.out.println("city:");
-					this.city=sc.next();
+					object.city=sc.next();
 					System.out.println("state:");
-					this.state=sc.next();
+					object.state=sc.next();
 					System.out.println("zip:");
-					this.zip=sc.next();
+					object.zip=sc.next();
 					System.out.println("phone number:");
-					this.phone_number=sc.next();
+					object.phone_number=sc.next();
 					System.out.println("E-mail:");
-					this.email=sc.next();
+					object.email=sc.next();
 					
 				}
 			}
