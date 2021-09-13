@@ -1,5 +1,9 @@
 package address;
 import java.util.*;		
+/**
+ * class containing different contacts
+ * @author Shravya P
+ */
 public class AddressBookMain {
 	public  ArrayList<AddressBookMain> contact=new ArrayList<>();  
 	public  Scanner sc=new Scanner(System.in);
@@ -11,10 +15,24 @@ public class AddressBookMain {
 	public String zip;
 	public String phone_number;
 	public String email;
+	/**
+	 * default constructor to print welcome message
+	 */
 	public AddressBookMain()
 	{
 		System.out.println("Welcome to adress book program"); 
 	}
+	/**
+	 * Parameterized constructor to initialize contact
+	 * @param first_name first name of contact
+	 * @param last_name last name of contact
+	 * @param address address of the contact
+	 * @param city city of the contact
+	 * @param state state of the contact
+	 * @param zipzip of the contact
+	 * @param phone_number phone number of the contact
+	 * @param email email of the contact
+	 */
 	public AddressBookMain(String first_name,String last_name,String address,String city,String state,String zip,String phone_number,String email)
 	{
 		this.first_name=first_name;
@@ -26,6 +44,9 @@ public class AddressBookMain {
 		this.phone_number=phone_number;
 		this.email=email;
 	}
+	/**
+	 * method to insert a new contact into addressbook
+	 */
 	public void  insertContact()
 	{
 		System.out.println("Enter the details of person!!");
@@ -50,6 +71,9 @@ public class AddressBookMain {
 	        contact.add(new AddressBookMain(first_name,last_name,address,city,state,zip,phone_number,email));   
 		}
 	}
+	/**
+	 * method to display a particular contact
+	 */
 	public void display()
 	{
 		System.out.println("Enter the person whose contact to be displayed"); //to display desired contact
@@ -74,7 +98,9 @@ public class AddressBookMain {
 		if(flag==0)
 		    System.out.println("Contact not found!!!");
 	}
-	
+	/**
+	 * method to display the entire addressbook
+	 */
 	public void display_addressbook()
 	{
 		if(contact.size()==0)	
@@ -99,6 +125,9 @@ public class AddressBookMain {
 			}
 		}
 	}
+	/**
+	 * method to edit the contact of addressbook
+	 */
 	public void edit()
 	{
 		System.out.println("Enter the person whose contact to be edited");	
@@ -152,6 +181,9 @@ public class AddressBookMain {
 		if(flag==0)
             System.out.println("Contact not found!!!");
 	}
+	/**
+	 * method to delete a contact in a addressbook
+	 */
 	public void delete()
 	{
 		System.out.println("Enter the person whose contact to be deleted"); 
@@ -169,6 +201,11 @@ public class AddressBookMain {
 		if(flag==0)
             System.out.println("Contact not found!!!");
 	}
+	/**
+	 * method to check if contact is already present in addressbook
+	 * @param name first name of the contact to be inserted
+	 * @return true if it exists or else false
+	 */
 	public Boolean duplicateCheck(String name)
 	{
 	    for (int j=0;j<contact.size();j++)
@@ -182,4 +219,18 @@ public class AddressBookMain {
         }
 	    return false;
 	}
+	/*
+	 * method to search a particular contact based on city or state
+	 */
+    public void search(String place) {
+        for (int j=0;j<contact.size();j++)
+        {   
+            AddressBookMain object=contact.get(j);
+            if(object.city.equals(place)||object.state.equals(place))
+            {
+                System.out.println(object.first_name+" "+object.last_name);  
+            }
+        }
+        
+    }
 }
