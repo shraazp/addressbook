@@ -1,74 +1,74 @@
 package address;
-
-import java.util.*; //import java utility class
-
-
-public class MultipleAddressBook {  //different address book
-	public static  int counter=0;		//to iterate the program many times
+import java.util.*; 
+public class MultipleAddressBook {  
+	public static  int counter=0;		
 	public static Scanner sc=new Scanner(System.in);
-	public static  void choice(int choice,AddressBookMain object)     //to perform different operations on contacts
-	{
-													//users choice is taken as input
+	public static  void choice(int choice,AddressBookMain object)     
+	{											
 			switch(choice)
 			{
-			case 1:	object.insertContact();			//add a new contact into addressbook
+			case 1:	object.insertContact();			
 					break;
 			
-			case 2:object.edit();					//edit existing contact							
+			case 2:object.edit();										
 					break;
 				   
-			case 3: object.delete();				//delete the preferred contact
+			case 3: object.delete();				
 					break;
 						
-			case 4: object.display();				//display desired contact
+			case 4: object.display();				
 					break;
 					
-			case 5:object.display_addressbook();	//display whole addressbook
+			case 5:object.display_addressbook();	
 					break;	
-			}
-			
-			
-		}
-	
+			}		
+	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-		
-		Hashtable<String,AddressBookMain>  multipleAddressBook = new Hashtable<String, AddressBookMain>();  //dictionary for mapping different address book with key 
-		AddressBookMain object=new AddressBookMain();					//first addressbook
-		
+		Hashtable<String,AddressBookMain>  multipleAddressBook = new Hashtable<String, AddressBookMain>();   
+		AddressBookMain object=new AddressBookMain();					
 		String n="";
 		String k="AddressBook1";
-		multipleAddressBook.put(k, object);							//put the first addressbook into dictionary
-		
-		while(counter!=1) //it repeats till the user wants to end
+		multipleAddressBook.put(k, object);						
+		while(counter!=1) 
 		{
-			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.exit"); //options for different actions
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Display address books\n8.exit"); //options for different actions
 			int choice=sc.nextInt();
-			if(choice==6)  //to create a new address book
+			if(choice==6)  
 			{
 				System.out.println("Enter the name of the addressbook");
 				n=sc.next();
-				AddressBookMain object1=new AddressBookMain();  // a new addressbook object is created 
+				if(multipleAddressBook.containsKey(n))
+				{
+				    System.out.println("Address book already exists!!!Please enter again");
+				    n=sc.next();
+				}
+				AddressBookMain object1=new AddressBookMain();  
 				multipleAddressBook.put(n, object1);
 					
 			}
-			else if(choice==7)				//to exist from the program
+			else if(choice==7)
+			{
+			    for(Map.Entry<String, AddressBookMain> entry : multipleAddressBook.entrySet())
+			    {
+			        System.out.println(entry.getKey());
+			    }
+			}
+			else if(choice==8)				
 				counter=1;
 			else
 			{
 				System.out.println("Enter the addressbook where you want to insert or modify the  contact!!");
 				n=sc.next();
-				choice(choice,multipleAddressBook.get(n));   //to perform required operation on desired addressbook
-			}
-			
-			
+				try {
+				    choice(choice,multipleAddressBook.get(n)); 
+				}
+				catch(Exception e)
+				{
+				    System.out.println("Please enter a valid addressbook!!!");
+				}	 
+			}	
 		}
-	}
-
-	
-		
+	}		
 }
 
 

@@ -1,13 +1,8 @@
 package address;
-import java.util.*;		//scanner class
+import java.util.*;		
 public class AddressBookMain {
-
-	public  ArrayList<AddressBookMain> contact=new ArrayList<>();  //collection class array list is used to store different contacts in address book
+	public  ArrayList<AddressBookMain> contact=new ArrayList<>();  
 	public  Scanner sc=new Scanner(System.in);
-											//counter variable to repeat while loop to add more contacts
-	/*class members
-	 * all the details of contacts
-	 */
 	public String first_name;
 	public String last_name;
 	public String address;
@@ -16,12 +11,10 @@ public class AddressBookMain {
 	public String zip;
 	public String phone_number;
 	public String email;
-	
 	public AddressBookMain()
 	{
-		System.out.println("Welcome to adress book program"); //welcome message
+		System.out.println("Welcome to adress book program"); 
 	}
-	
 	public AddressBookMain(String first_name,String last_name,String address,String city,String state,String zip,String phone_number,String email)
 	{
 		this.first_name=first_name;
@@ -33,41 +26,41 @@ public class AddressBookMain {
 		this.phone_number=phone_number;
 		this.email=email;
 	}
-	
-	//parameterized constructors for initializing class members
 	public void  insertContact()
 	{
 		System.out.println("Enter the details of person!!");
 		System.out.println("first Name:");
 		String first_name=sc.next();
-		System.out.println("last name:");
-		String last_name=sc.next();
-		System.out.println("address:");
-		String address=sc.next();
-		System.out.println("city:");
-		String city=sc.next();
-		System.out.println("state:");
-		String state=sc.next();
-		System.out.println("zip:");
-		String zip=sc.next();
-		System.out.println("phone number:");
-		String phone_number=sc.next();
-		System.out.println("E-mail:");
-		String email=sc.next();
-		contact.add(new AddressBookMain(first_name,last_name,address,city,state,zip,phone_number,email));
-		
+		if(duplicateCheck(first_name)==false)
+		{
+		    System.out.println("last name:");
+	        String last_name=sc.next();
+	        System.out.println("address:");
+	        String address=sc.next();
+	        System.out.println("city:");
+	        String city=sc.next();
+	        System.out.println("state:");
+	        String state=sc.next();
+	        System.out.println("zip:");
+	        String zip=sc.next();
+	        System.out.println("phone number:");
+	        String phone_number=sc.next();
+	        System.out.println("E-mail:");
+	        String email=sc.next();
+	        contact.add(new AddressBookMain(first_name,last_name,address,city,state,zip,phone_number,email));   
+		}
 	}
-	//method to display the addressbook
 	public void display()
 	{
 		System.out.println("Enter the person whose contact to be displayed"); //to display desired contact
 		String name1=sc.next();	//input is taken from console
+		int flag=0;
 		for (int j=0;j<contact.size();j++)
 		{
 			AddressBookMain object=contact.get(j);
 			if(object.first_name.equals(name1))
 			{
-				
+			    flag=1;
 				System.out.println("first Name:"+object.first_name);
 				System.out.println("last name:"+object.last_name);
 				System.out.println("address:"+object.address);
@@ -75,24 +68,22 @@ public class AddressBookMain {
 				System.out.println("state:"+object.state);
 				System.out.println("zip:"+object.zip);
 				System.out.println("phone number:"+object.phone_number);
-				System.out.println("E-mail:"+object.email);	//call display function
-			}
-		  
-		  
-		}
-		
+				System.out.println("E-mail:"+object.email);	
+			} 
+		}	
+		if(flag==0)
+		    System.out.println("Contact not found!!!");
 	}
 	
 	public void display_addressbook()
 	{
-		if(contact.size()==0)	//to display all the contacts of the address book
+		if(contact.size()==0)	
 		{
 			System.out.println("No Contacts in the address book!!!");
 		}
 		else
 			{
 			System.out.println("Address book contains following contacts!!!");
-			
 			for(int j=0;j<contact.size();j++)
 			{
 				AddressBookMain object=contact.get(j);
@@ -104,63 +95,91 @@ public class AddressBookMain {
 				System.out.println("state:"+object.state);
 				System.out.println("zip:"+object.zip);
 				System.out.println("phone number:"+object.phone_number);
-				System.out.println("E-mail:"+object.email);	//call display function
+				System.out.println("E-mail:"+object.email);	
 			}
 		}
 	}
-	//method to edit the address book object itself modified
 	public void edit()
 	{
-		System.out.println("Enter the person whose contact to be edited");	//to edit existing address
+		System.out.println("Enter the person whose contact to be edited");	
 		String name=sc.next();
-			for (int j=0;j<contact.size();j++)
+		int flag=0;
+		for (int j=0;j<contact.size();j++)
+		{
+		    AddressBookMain object=contact.get(j);
+			if(object.first_name.equals(name))
 			{
-				AddressBookMain object=contact.get(j);
-				if(object.first_name.equals(name))
-				{
-					
-					System.out.println("first Name:");
-					object.first_name=sc.next();
-					System.out.println("last name:");
-					object.last_name=sc.next();
-					System.out.println("address:");
-					object.address=sc.next();
-					System.out.println("city:");
-					object.city=sc.next();
-					System.out.println("state:");
-					object.state=sc.next();
-					System.out.println("zip:");
-					object.zip=sc.next();
-					System.out.println("phone number:");
-					object.phone_number=sc.next();
-					System.out.println("E-mail:");
-					object.email=sc.next();
-					
-				}
+			    flag=1;
+				System.out.println("first Name:"+object.first_name);
+				System.out.println("last name:"+object.last_name);
+				System.out.println("address:"+object.address);
+				System.out.println("city:"+object.city);
+				System.out.println("state:"+object.state);
+				System.out.println("zip:"+object.zip);
+				System.out.println("phone number:"+object.phone_number);
+				System.out.println("E-mail:"+object.email);	
+				System.out.println("Enter the number which you want to edit\n1.first name\n2.last name\n3.address\n4.city\n5.state\n6.zip\n7.phone number\n8.email");
+                int choose = sc.nextInt();
+                switch(choose){
+                    case 1: System.out.println("first name:");
+                        object.first_name=sc.next();
+                        break;
+                    case 2: System.out.println("last name:");
+                        object.last_name=sc.next();
+                        break;
+                    case 3: System.out.println("address:");
+                        object.address=sc.next();
+                        break;
+                    
+                    case 4: System.out.println("city:");
+                        object.city=sc.next();
+                        break;
+                    case 5: System.out.println("state:");
+                        object.state=sc.next();
+                        break;
+                    case 6: System.out.println("zip:");
+                        object.zip=sc.next();
+                        break;
+                    case 7: System.out.println("phone_number:");
+                        object.phone_number=sc.next();
+                        break;
+                    case 8: System.out.println("email:");
+                        object.email=sc.next();
+                        break;
+                }
 			}
-		
+		}	
+		if(flag==0)
+            System.out.println("Contact not found!!!");
 	}
-	//method to delete a contact in address book
-	public  void delete()
+	public void delete()
 	{
-		System.out.println("Enter the person whose contact to be deleted"); //to delete the contact of desired person
-		String name11=sc.next();//input is taken from console
-		
+		System.out.println("Enter the person whose contact to be deleted"); 
+		String name11=sc.next();
+		int flag=0;
 		for (int j=0;j<contact.size();j++)
 		{	
 			AddressBookMain object=contact.get(j);
 			if(object.first_name.equals(name11))
 			{
-				
-				contact.remove(object);	//array list has built in method to remove objects
-			
+			    flag=1;
+				contact.remove(object);	
 			}
 		}
-								
-		
+		if(flag==0)
+            System.out.println("Contact not found!!!");
 	}
-	
-	
-	
-
+	public Boolean duplicateCheck(String name)
+	{
+	    for (int j=0;j<contact.size();j++)
+        {   
+            AddressBookMain object=contact.get(j);
+            if(object.first_name.equals(name))
+            {
+                System.out.println("Contact already exists!!Please enter a different contact name"); 
+                return true;
+            }
+        }
+	    return false;
+	}
 }
