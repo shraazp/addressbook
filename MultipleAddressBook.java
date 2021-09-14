@@ -6,8 +6,8 @@ import java.util.*;
  * @author Shravya P
  */
 public class MultipleAddressBook {  
-	public static  int counter=0;		
-	public static Scanner sc=new Scanner(System.in);
+	static int counter=0;		
+	static Scanner sc=new Scanner(System.in);
 	/**
 	 * method to call different operations on addressbook
 	 * @param choice which operation
@@ -29,19 +29,21 @@ public class MultipleAddressBook {
 			case 4: object.display();				
 					break;
 					
-			case 5:object.display_addressbook();	
+			case 5:object.display_addressbook();
 					break;	
+			default:System.out.println("Please enter a valid number");
+			break;
 			}		
 	}
 	public static void main(String[] args) {
-		Hashtable<String,AddressBookMain>  multipleAddressBook = new Hashtable<String, AddressBookMain>();   
+		Map<String,AddressBookMain>  multipleAddressBook = new HashMap<>();   
 		AddressBookMain object=new AddressBookMain();					
 		String n="";
 		String k="AddressBook1";
 		multipleAddressBook.put(k, object);						
 		while(counter!=1) 
 		{
-			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Display address books\n8.Search for city or state\n9.exit"); 
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Display address books\n8.Search for city or state\n9.view by state or city\n9.View persons by state\n10.View persons by city\n11.exit"); 
 			int choice=sc.nextInt();
 			if(choice==6)  
 			{
@@ -75,11 +77,30 @@ public class MultipleAddressBook {
 			    }
 			      
 			}
-			else if(choice==9)				
+			else if(choice == 9)
+            {
+                for(Map.Entry<String, AddressBookMain> entry : multipleAddressBook.entrySet())
+                {
+                    AddressBookMain object1=entry.getValue();
+                    System.out.println("Addressbook:"+entry.getKey());
+                    object1.viewPersonByState();
+                }
+
+            }
+            else if(choice == 10)
+            {
+                for(Map.Entry<String, AddressBookMain> entry : multipleAddressBook.entrySet())
+                {
+                    AddressBookMain object1=entry.getValue();
+                    System.out.println("Addressbook:"+entry.getKey());
+                    object1.viewPersonByCity();
+                }
+            }
+			else if(choice==11)				
 				counter=1;
 			else
 			{
-				System.out.println("Enter the addressbook where you want to insert or modify the  contact!!");
+			    System.out.println("Enter the addressbook where you want to insert or modify the  contact!!");
 				n=sc.next();
 				try {
 				    choice(choice,multipleAddressBook.get(n)); 

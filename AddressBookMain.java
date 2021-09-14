@@ -5,16 +5,16 @@ import java.util.*;
  * @author Shravya P
  */
 public class AddressBookMain {
-	public  ArrayList<AddressBookMain> contact=new ArrayList<>();  
-	public  Scanner sc=new Scanner(System.in);
-	public String first_name;
-	public String last_name;
-	public String address;
-	public String city;
-	public String state;
-	public String zip;
-	public String phone_number;
-	public String email;
+    private  List<AddressBookMain> contact=new ArrayList<>();  
+    private  Scanner sc=new Scanner(System.in);
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String city;
+	private String state;
+	private String zip;
+	private String phoneNumber;
+	private String email;
 	/**
 	 * default constructor to print welcome message
 	 */
@@ -33,15 +33,15 @@ public class AddressBookMain {
 	 * @param phone_number phone number of the contact
 	 * @param email email of the contact
 	 */
-	public AddressBookMain(String first_name,String last_name,String address,String city,String state,String zip,String phone_number,String email)
+	public AddressBookMain(String firstName,String lastName,String address,String city,String state,String zip,String phoneNumber,String email)
 	{
-		this.first_name=first_name;
-		this.last_name=last_name;
+		this.firstName=firstName;
+		this.lastName=lastName;
 		this.address=address;
 		this.city=city;
 		this.state=state;
 		this.zip=zip;
-		this.phone_number=phone_number;
+		this.phoneNumber=phoneNumber;
 		this.email=email;
 	}
 	/**
@@ -51,8 +51,8 @@ public class AddressBookMain {
 	{
 		System.out.println("Enter the details of person!!");
 		System.out.println("first Name:");
-		String first_name=sc.next();
-		if(duplicateCheck(first_name)==false)
+		String firstname=sc.next();
+		if(!duplicateCheck(firstname))
 		{
 		    System.out.println("last name:");
 	        String last_name=sc.next();
@@ -68,7 +68,7 @@ public class AddressBookMain {
 	        String phone_number=sc.next();
 	        System.out.println("E-mail:");
 	        String email=sc.next();
-	        contact.add(new AddressBookMain(first_name,last_name,address,city,state,zip,phone_number,email));   
+	        contact.add(new AddressBookMain(firstname,last_name,address,city,state,zip,phone_number,email));   
 		}
 	}
 	/**
@@ -82,16 +82,16 @@ public class AddressBookMain {
 		for (int j=0;j<contact.size();j++)
 		{
 			AddressBookMain object=contact.get(j);
-			if(object.first_name.equals(name1))
+			if(object.firstName.equals(name1))
 			{
 			    flag=1;
-				System.out.println("first Name:"+object.first_name);
-				System.out.println("last name:"+object.last_name);
+				System.out.println("first Name:"+object.firstName);
+				System.out.println("last name:"+object.lastName);
 				System.out.println("address:"+object.address);
 				System.out.println("city:"+object.city);
 				System.out.println("state:"+object.state);
 				System.out.println("zip:"+object.zip);
-				System.out.println("phone number:"+object.phone_number);
+				System.out.println("phone number:"+object.phoneNumber);
 				System.out.println("E-mail:"+object.email);	
 			} 
 		}	
@@ -114,13 +114,13 @@ public class AddressBookMain {
 			{
 				AddressBookMain object=contact.get(j);
 				System.out.println("Contact details of person"+j);
-				System.out.println("first Name:"+object.first_name);
-				System.out.println("last name:"+object.last_name);
+				System.out.println("first Name:"+object.firstName);
+				System.out.println("last name:"+object.lastName);
 				System.out.println("address:"+object.address);
 				System.out.println("city:"+object.city);
 				System.out.println("state:"+object.state);
 				System.out.println("zip:"+object.zip);
-				System.out.println("phone number:"+object.phone_number);
+				System.out.println("phone number:"+object.phoneNumber);
 				System.out.println("E-mail:"+object.email);	
 			}
 		}
@@ -136,25 +136,25 @@ public class AddressBookMain {
 		for (int j=0;j<contact.size();j++)
 		{
 		    AddressBookMain object=contact.get(j);
-			if(object.first_name.equals(name))
+			if(object.firstName.equals(name))
 			{
 			    flag=1;
-				System.out.println("first Name:"+object.first_name);
-				System.out.println("last name:"+object.last_name);
+				System.out.println("first Name:"+object.firstName);
+				System.out.println("last name:"+object.lastName);
 				System.out.println("address:"+object.address);
 				System.out.println("city:"+object.city);
 				System.out.println("state:"+object.state);
 				System.out.println("zip:"+object.zip);
-				System.out.println("phone number:"+object.phone_number);
+				System.out.println("phone number:"+object.phoneNumber);
 				System.out.println("E-mail:"+object.email);	
 				System.out.println("Enter the number which you want to edit\n1.first name\n2.last name\n3.address\n4.city\n5.state\n6.zip\n7.phone number\n8.email");
                 int choose = sc.nextInt();
                 switch(choose){
                     case 1: System.out.println("first name:");
-                        object.first_name=sc.next();
+                        object.firstName=sc.next();
                         break;
                     case 2: System.out.println("last name:");
-                        object.last_name=sc.next();
+                        object.lastName=sc.next();
                         break;
                     case 3: System.out.println("address:");
                         object.address=sc.next();
@@ -170,7 +170,7 @@ public class AddressBookMain {
                         object.zip=sc.next();
                         break;
                     case 7: System.out.println("phone_number:");
-                        object.phone_number=sc.next();
+                        object.phoneNumber=sc.next();
                         break;
                     case 8: System.out.println("email:");
                         object.email=sc.next();
@@ -192,7 +192,7 @@ public class AddressBookMain {
 		for (int j=0;j<contact.size();j++)
 		{	
 			AddressBookMain object=contact.get(j);
-			if(object.first_name.equals(name11))
+			if(object.firstName.equals(name11))
 			{
 			    flag=1;
 				contact.remove(object);	
@@ -211,7 +211,7 @@ public class AddressBookMain {
 	    for (int j=0;j<contact.size();j++)
         {   
             AddressBookMain object=contact.get(j);
-            if(object.first_name.equals(name))
+            if(object.firstName.equals(name))
             {
                 System.out.println("Contact already exists!!Please enter a different contact name"); 
                 return true;
@@ -228,9 +228,63 @@ public class AddressBookMain {
             AddressBookMain object=contact.get(j);
             if(object.city.equals(place)||object.state.equals(place))
             {
-                System.out.println(object.first_name+" "+object.last_name);  
+                System.out.println(object.firstName+" "+object.lastName);  
             }
         }
         
+    }
+    /*
+     * method to view a particular contact based on state
+     */
+    public void viewPersonByState() {
+        Map<String,List<String>> stateMap = new HashMap<> ();
+        for (int j=0;j<contact.size();j++)
+        {   
+            AddressBookMain object=contact.get(j);
+            if(stateMap.containsKey(object.state))
+            {
+                List<String> temp= stateMap.get(object.state);
+                temp.add(object.firstName);
+                stateMap.put(object.state, temp);
+            }
+            else
+            {
+                List<String> temp=new ArrayList<>();
+                temp.add(object.firstName);
+                stateMap.put(object.state, temp);
+            }
+        }
+        for(Map.Entry m: stateMap.entrySet()) {
+            
+                System.out.println(m.getKey()+" : "+m.getValue());
+            }
+        }
+    
+    /*
+     * method to view a particular contact based on city
+     */
+    public void viewPersonByCity(){
+        Map<String,List<String>> cityMap = new HashMap<> ();
+        for (int j=0;j<contact.size();j++)
+        {   
+            AddressBookMain object=contact.get(j);
+            if(cityMap.containsKey(object.city))
+            {
+                List<String> temp= cityMap.get(object.city);
+                temp.add(object.firstName);
+                cityMap.put(object.city, temp);
+            }
+            else
+            {
+                List<String> temp=new ArrayList<>();
+                temp.add(object.firstName);
+                cityMap.put(object.city, temp);
+            }
+        }
+        for(Map.Entry m: cityMap.entrySet()) {
+           
+                System.out.println(m.getKey()+" : "+m.getValue());
+            
+        }
     }
 }
