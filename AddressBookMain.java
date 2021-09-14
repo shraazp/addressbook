@@ -257,12 +257,14 @@ public class AddressBookMain {
         for(Map.Entry m: stateMap.entrySet()) {
             
                 System.out.println(m.getKey()+" : "+m.getValue());
+                System.out.println("There are "+((List<String>) m.getValue()).size()+" persons in state "+m.getKey());
             }
         }
     
     /*
      * method to view a particular contact based on city
      */
+    @SuppressWarnings("unchecked")
     public void viewPersonByCity(){
         Map<String,List<String>> cityMap = new HashMap<> ();
         for (int j=0;j<contact.size();j++)
@@ -284,6 +286,7 @@ public class AddressBookMain {
         for(Map.Entry m: cityMap.entrySet()) {
            
                 System.out.println(m.getKey()+" : "+m.getValue());
+                System.out.println("There are "+((List<String>) m.getValue()).size()+" persons in city "+m.getKey());
             
         }
     }
