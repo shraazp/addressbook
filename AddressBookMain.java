@@ -1,5 +1,7 @@
 package address;
 import java.util.*;		
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 /**
  * class containing different contacts
  * @author Shravya P
@@ -288,6 +290,33 @@ public class AddressBookMain {
                 System.out.println(m.getKey()+" : "+m.getValue());
                 System.out.println("There are "+((List<String>) m.getValue()).size()+" persons in city "+m.getKey());
             
+        }
+    }
+    /*
+     * method to sort the list based on name
+     */
+    public void sortByName() {
+        Map<String,AddressBookMain> map = new HashMap<String,AddressBookMain>();
+        for (int j=0;j<contact.size();j++)
+        {
+            AddressBookMain object=contact.get(j);
+            map.put(object.firstName,object);
+        }
+        Map<String, AddressBookMain> sortedMap = map.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue,LinkedHashMap::new));
+        
+        for (Map.Entry<String, AddressBookMain> entry : sortedMap.entrySet()) {
+            System.out.println("First Name:"+entry.getValue().firstName);
+            System.out.println("Last Name:"+entry.getValue().lastName);
+            System.out.println("Address:"+entry.getValue().address);
+            System.out.println("City:"+entry.getValue().city);
+            System.out.println("State:"+entry.getValue().state);
+            System.out.println("Zip:"+entry.getValue().zip);
+            System.out.println("Phone number:"+entry.getValue().phoneNumber);
+            System.out.println("E-mail:"+entry.getValue().email);
+            System.out.println("--------------------------------------------");
         }
     }
 }
