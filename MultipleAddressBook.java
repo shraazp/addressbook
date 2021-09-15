@@ -43,7 +43,9 @@ public class MultipleAddressBook {
 		multipleAddressBook.put(k, object);						
 		while(counter!=1) 
 		{
-			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Display address books\n8.Search for city or state\n9.view by state or city\n9.View persons by state\n10.View persons by city\n11.Sort by name\n12.exit"); 
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n"
+			        + "5.Display addressbook\n6.Create another address book\n7.Display address books\n8.Search for city or state\n"
+			       + "9.View persons by state\n10.View persons by city\n11.Sort by name,city,state or zip\n12.exit"); 
 			int choice=sc.nextInt();
 			if(choice==6)  
 			{
@@ -98,11 +100,13 @@ public class MultipleAddressBook {
             }
             else if(choice == 11)
             {
+                System.out.println("sort By 1.Name 2.city 3.state 4.zip");
+                int option = sc.nextInt();
                 for(Map.Entry<String, AddressBookMain> entry : multipleAddressBook.entrySet())
                 {
                     AddressBookMain object1 = entry.getValue();
                     System.out.println("Addressbook:"+entry.getKey());
-                    object1.sortByName();
+                    object1.sortPersonByNameCityStateZip(option);
                 }
             }
 			else if(choice==12)				
