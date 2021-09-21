@@ -79,7 +79,7 @@ public class AddressBookMain {
     }
     public void writeFile(String file) {
         try {
-            FileWriter writer = new FileWriter(file+".txt");
+            FileWriter writer = new FileWriter(file+".txt",true);
             for (int j=0;j<contact.size();j++)
             {
                 AddressBookMain object=contact.get(j);
